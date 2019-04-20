@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Products</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>SKU ID</th>
+      <th>Price</th>
+      <th>IMAGE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= link_to product.name, edit_admin_product_path(product.id) %></td>
+        <td><%= product.sku_id %></td>
+        <td><%= product.price %></td>
+        <td><%= image_tag product.images.first.variant(resize: "100x100") if product.images.exists? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
