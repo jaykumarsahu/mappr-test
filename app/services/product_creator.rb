@@ -9,15 +9,14 @@ class ProductCreator
 
   def create
     @product = Product.find_or_initialize_by(sku_id: attrs[:sku_id])
-    product.update(args_without_associations)
-    update_associations
+    product.update_attributes(args_without_images)
+    update_images
     product
   end
 
   private
 
   def update_associations
-    update_tags_and_categories
     update_images
   end
 
@@ -49,7 +48,7 @@ class ProductCreator
     nil
   end
 
-  def args_without_associations
-    attrs.except(:images, :categories, :tags)
+  def args_without_images
+    attrs.except(:images, :categories, :tags).merge(category_list: attrs[:categories], tag_list: attrs[:tags])
   end
 end

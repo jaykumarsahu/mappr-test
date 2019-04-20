@@ -1,7 +1,13 @@
 class Api::V1::ProductsController < Api::V1::BaseController
   def create
     product = ProductCreator.new(product_params).create
-    render json: { status: product.persisted? }
+
+    response = if product.errors.blank?
+                 { status: 'success' }
+               else
+                 { status: 'error', messages: product.errors.full_messages.join('\n') }
+               end
+    render json: response
   end
 
   private

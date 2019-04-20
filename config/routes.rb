@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   namespace :api do
     namespace :v1 do
       resources :products, only: [:create]
@@ -7,6 +6,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    resources :products, only: [:index, :edit, :update]
+    resources :products, only: %i[index edit update]
   end
 end

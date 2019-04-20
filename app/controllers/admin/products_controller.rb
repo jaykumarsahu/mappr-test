@@ -1,12 +1,11 @@
 class Admin::ProductsController < ApplicationController
-  before_action :set_product, only: [ :edit, :update]
+  before_action :set_product, only: %i[edit update]
 
   def index
     @products = Product.all
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
@@ -25,6 +24,6 @@ class Admin::ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:name, :sku_id, :expire_date, :price)
+    params.require(:product).permit(:name, :sku_id, :expire_date, :price, :tag_list, :category_list)
   end
 end

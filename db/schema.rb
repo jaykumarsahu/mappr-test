@@ -39,7 +39,6 @@ ActiveRecord::Schema.define(version: 2019_04_20_075220) do
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.integer "sku_id"
-    t.text "description"
     t.float "price"
     t.date "expire_date"
     t.datetime "created_at", null: false
